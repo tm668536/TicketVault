@@ -20,68 +20,25 @@ const App = () => {
   const [TotalTicketsCostText, setTotalTicketsCostText] = useState("");
   const [TicketCost, setTicketCost] = useState(99.99);
 
-  const Title = () => {
-    return (
-      <View>
-        <Text>Ticket Vault</Text>
-      </View>
-    );
-  }
-
-  const TicketInput = () => {
-    const [text, setText] = useState('');
-
-    return (
-      <View>
-        <TextInput
-          placeholder="Number of Tickets"
-          onChangeText={newText => setText(newText)}
-          defaultValue={text} />
-      </View>
-    );
-  }
-  
-  function CalcButton() {
-
-    return (
-      <View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={setTotalTicketsCost(Tickets * TicketCost)}>
-          <Text>Find The Cost</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
-  const ResultText = () => {
-
+  function onPress() {
+    setTotalTicketsCost(Tickets * TicketCost)
     setTotalTicketsCostText("Ticket Cost: " + TotalTicketsCost)
-
-    if (TotalTicketsCost != null) {
-      return (
-        <View>
-          <Text>{TotalTicketsCostText}</Text>
-        </View>
-      );
-    }
-  }
-
-  const ConcertImage = () => {
-    return (
-      <View>
-        <Image source={concert} style={{ height: 200, width: 500 }} />
-      </View>
-    );
   }
 
   return (
     <View style={styles.container}>
-      <Title />
-      <TicketInput />
-      <CalcButton />
-      <ResultText />
-      <ConcertImage />
+        <Text>Ticket Vault</Text>
+        <TextInput
+          placeholder="Number of Tickets"
+          onChangeText={newText => setTickets(newText)}
+          defaultValue={Tickets} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={onPress()}>
+          <Text>Find The Cost</Text>
+        </TouchableOpacity>
+        <Text>{TotalTicketsCostText}</Text>
+        <Image source={concert} style={{ height: 200, width: 500 }} />
     </View>
   );
 }
