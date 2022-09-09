@@ -10,19 +10,15 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import concert from './assets/concert.png';
 
-SplashScreen.preventAutoHideAsync();
-setTimeout(SplashScreen.hideAsync, 2000);
-
-const App = () => {
+export default function App() {
 
   const [Tickets, setTickets] = useState(null);
-  const [TotalTicketsCost, setTotalTicketsCost] = useState(null);
   const [TotalTicketsCostText, setTotalTicketsCostText] = useState("");
+  const [Text, setText] = useState("");
   const [TicketCost, setTicketCost] = useState(99.99);
 
   function onPress() {
-    setTotalTicketsCost(Tickets * TicketCost)
-    setTotalTicketsCostText("Ticket Cost: " + TotalTicketsCost)
+    setTotalTicketsCostText("Ticket Cost: " + Tickets * TicketCost)
   }
 
   return (
@@ -34,16 +30,14 @@ const App = () => {
           defaultValue={Tickets} />
         <TouchableOpacity
           style={styles.button}
-          onPress={onPress()}>
+          onPress={onPress}>
           <Text>Find The Cost</Text>
         </TouchableOpacity>
         <Text>{TotalTicketsCostText}</Text>
-        <Image source={concert} style={{ height: 200, width: 500 }} />
+        <Image source={concert} style={styles.img} />
     </View>
   );
 }
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -51,6 +45,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  img: {
+    height: 200,
+    width: 500
   },
   button: {
     textAlign: 'center',
